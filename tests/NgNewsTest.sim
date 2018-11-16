@@ -1,0 +1,7 @@
+# This should run without throwing any error!
+
+call NgNews.NgNews
+
+block main()
+  newsToday = new NgNews
+  @ newsToday.fetchNews()

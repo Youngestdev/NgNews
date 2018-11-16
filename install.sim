@@ -1,0 +1,8 @@
+call simple.system.System
+call simple.system.SimpleX
+
+final installNgNews = 'cp -r NgNews ' +simpleModulesDir()+ ''
+final chmodNgNews = 'chmod 777 ' +simpleModulesDir()+'/NgNews'
+
+__exec(installNgNews)
+__exec(chmodNgNews)
