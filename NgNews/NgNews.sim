@@ -26,7 +26,6 @@ class NgNews
     NgNewsFetcher.prepare()
 
     NgNewsOutput = new JsonObject(NgNewsFetcher.getStringOutput())
-    # return NgNews.getChildObject("articles").getContent()
     NgNews = new List(NgNewsOutput.getChildObjectContent("articles"))
 
     return NgNews.keys()  
