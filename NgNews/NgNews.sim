@@ -1,0 +1,36 @@
+/* 
+	@Author - Abdulazeez Abdulazeez Adeshina
+
+*/
+
+call simple.internet.curl.CurlHTTP
+call parser.json.JsonObject
+call simple.core.List
+
+module NgNews
+
+# Curl Endpoint from API website.
+
+# curl https://newsapi.org/v2/top-headlines -G \
+#     -d country=us \
+#     -d apiKey=e66fe88ecdf346649744e9158feb0f83
+
+
+class NgNews
+
+  block fetch()
+    pageSize = 1
+    NgNewsFetcher = new CurlHTTP("https://newsapi.org/v2/top-headlines?country=ng&pageSize="+pageSize)
+    NgNewsFetcher.addHeader(apiKey)
+    NgNewsFetcher.addHeader("Content-type: application/json")
+    NgNewsFetcher.prepare()
+
+    NgNewsOutput = new JsonObject(NgNewsFetcher.getStringOutput())
+    # return NgNews.getChildObject("articles").getContent()
+    NgNews = new List(NgNewsOutput.getChildObjectContent("articles"))
+
+    return NgNews.keys()  
+	  NgNewsFetcher.safeFlush()
+	end
+
+  private apiKey = "x-api-key: e66fe88ecdf346649744e9158feb0f83"
