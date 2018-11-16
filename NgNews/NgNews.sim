@@ -19,7 +19,7 @@ module NgNews
 class NgNews
 
   block fetch()
-    pageSize = 1
+    pageSize = 20
     NgNewsFetcher = new CurlHTTP("https://newsapi.org/v2/top-headlines?country=ng&pageSize="+pageSize)
     NgNewsFetcher.addHeader(apiKey)
     NgNewsFetcher.addHeader("Content-type: application/json")
